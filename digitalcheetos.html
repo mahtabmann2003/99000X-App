@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vikings Robotics Software</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oxanium&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="media/99000X Logo SQUARE.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" type="image/png" href="media/99000X Logo SQUARE.png">
+    <script src="js/main.js"></script>
+    <script src="js/ai.js"></script>
+</head>
+<body>
+<h1>99000X Tower Takeover Prediction Software</h1>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <p><span id="js-timeout">05:00</span></p>
+    </div>
+
+</div>
+<a onclick="greyToWhite()"><i class="material-icons" id="robot">adb</i></a>
+<a href="index.html"><i class="material-icons" id="home">home</i></a>
+<div class="mainStuff">
+    <div class="switcher"><a onclick="switchSides()"><i class="material-icons" id="switcher">cached</i></a></div>
+    <div class="row">
+        <div class="column two">
+            <h4 class="scoreUs" id="scoreUs">0</h4>
+        </div>
+        <div class="column two">
+            <h4 class="scoreThem" id="scoreThem">0</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column width">
+            <input class="big width" type="text" name="opponent1" id="opponent1" placeholder="Enter Opponent 1">
+        </div>
+        <div class="column">
+            <select class="big" id="autonWinner">
+                <option disabled selected value>Auton Winner</option>
+                <option value="us">Us</option>
+                <option value="them">Them</option>
+                <option value="tie">Tie</option>
+            </select>
+        </div>
+        <div class="column width">
+            <input class="big" type="text" name="opponent2" id="opponent2" placeholder="Enter Opponent 2">
+        </div>
+    </div>
+    <br>
+    <div class="row red" id="usCubes">
+        <div class="column">
+            <img src="media/greencube.png" height="1000" width="1000" class="cube" alt="Green Cube"/>
+        </div>
+        <div class="column">
+            <img src="media/purplecube.png" height="1000" width="1000" class="cube" alt="Purple Cube"/><br>
+        </div>
+        <div class="column">
+            <img src="media/orangecube.png" height="1000" width="1000" class="cube" alt="Orange Cube"/>
+        </div>
+        <br>
+    </div>
+    <div class="row">
+        <div class="buttonColumn nine">
+            <button type="button" class="button add greenButton kindaBig" onclick="GoDown('usGreenCount'); current_score_output(); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"><input class="big" type="number" name="usPurpleCount" id="usGreenCount" min="0" max="22" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add greenButton kindaBig" onclick="GoUp('usGreenCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add purpleButton kindaBig" onclick="GoDown('usPurpleCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"><input class="big" type="number" name="usOrangeCount" id="usPurpleCount" min="0" max="22" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add purpleButton kindaBig" onclick="GoUp('usPurpleCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add orangeButton kindaBig" onclick="GoDown('usOrangeCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"><input class="big" type="number" name="usOrangeCount" id="usOrangeCount" min="0" max="22" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add orangeButton kindaBig" onclick="GoUp('usOrangeCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+    </div>
+    <br>
+    <div class="row blue" id="themCubes">
+        <div class="column">
+            <img src="media/greencube.png" height="1000" width="1000" class="cube" alt="Green Cube"/>
+        </div>
+        <div class="column">
+            <img src="media/purplecube.png" height="1000" width="1000" class="cube" alt="Purple Cube"/><br>
+        </div>
+        <div class="column">
+            <img src="media/orangecube.png" height="1000" width="1000" class="cube" alt="Orange Cube"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="buttonColumn nine">
+            <button type="button" class="button add greenButton" onclick="GoDown('themGreenCount'); current_score_output(); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"><input class="big" type="number" name="usPurpleCount" id="themGreenCount" min="0" max="22" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add greenButton" onclick="GoUp('themGreenCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add purpleButton" onclick="GoDown('themPurpleCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"><input class="big" type="number" name="usOrangeCount" id="themPurpleCount" min="0" max="22" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add purpleButton" onclick="GoUp('themPurpleCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add orangeButton" onclick="GoDown('themOrangeCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"><input class="big" type="number" name="usOrangeCount" id="themOrangeCount" min="0" max="22" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add orangeButton" onclick="GoUp('themOrangeCount'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="column">
+            <img src="media/GreenTowerSquare.png" height="500" width="500" class="tower" alt="Green Tower"/>
+        </div>
+        <div class="column">
+            <img src="media/PurpleTowerSquare.png" height="500" width="500" class="tower" alt="Purple Tower"/>
+        </div>
+        <div class="column">
+            <img src="media/OrangeTowerSquare.png" height="500" width="500" class="tower" alt="Orange Tower"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="buttonColumn nine">
+            <button type="button" class="button add greenButton" onclick="GoDown('greenTowers'); current_score_output(); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"><input class="big" type="number" name="greenTowerCount" id="greenTowers" min="0" max="7" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add greenButton" onclick="GoUp('greenTowers'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add purpleButton" onclick="GoDown('purpleTowers'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"><input class="big" type="number" name="purpleTowerCount" id="purpleTowers" min="0" max="7" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add purpleButton" onclick="GoUp('purpleTowers'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add orangeButton" onclick="GoDown('orangeTowers'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">-</button>
+        </div>
+        <div class="column nine"> <input class="big" type="number" name="orangeTowerCount" id="orangeTowers" min="0" max="7" value="0"></div>
+        <div class="buttonColumn nine">
+            <button type="button" class="button add orangeButton" onclick="GoUp('orangeTowers'); current_score_output (); descore_orange (score_us, score_them, orange_us, orange_them, orange_tower, status); descore_green (score_us, score_them, green_us, green_them, green_tower, status); descore_purple (score_us, score_them, purple_us, purple_them, purple_tower, status); score_orange (score_us, score_them, orange_us, orange_them, orange_tower, status ); score_green(score_us, score_them, green_us, green_them, green_tower, status); score_purple(score_us, score_them, purple_us, purple_them, purple_tower, status); should_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); should_score_filter (score_orange_difference, score_purple_difference, score_green_difference); shouldnt_descore_filter (descore_orange_difference, descore_purple_difference, descore_green_difference, orange_tower, purple_tower, green_tower); shouldnt_score_filter (score_orange_difference, score_purple_difference, score_green_difference); opponent_score(score_orange_difference, score_purple_difference, score_green_difference, opponent_1, opponent_2); output_list(); opponents()">+</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h3>Strategic Analysis</h3>
+<ul class="strategies" id="strategies"></ul>
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("robot");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>
